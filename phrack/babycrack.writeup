@@ -1,0 +1,134 @@
+#####################################################
+#include <stdio.h>
+
+void main(int argc, char *argv) 
+{
+while (1) {	
+char v17= getchar();
+char bak=v17;
+ if ( v17 != -1 && v17 )
+      {
+        if ( v17 > 47 && v17 <= 96 )
+        {
+          v17 += 53;
+        }
+        else if ( v17 <= 46 )
+        {
+          v17 += v17 % 11;
+        }
+        else
+        {
+          v17 -= v17 % 61;
+        }
+        
+      }
+	printf("\ninput:%c,after:%d(%c)", bak, v17, v17);
+  }
+}
+#####################################################
+input:`,after:-107(▒)
+input:1,after:102(f)
+input:2,after:103(g)
+input:3,after:104(h)
+input:4,after:105(i)
+input:5,after:106(j)
+input:6,after:107(k)
+input:7,after:108(l)
+input:8,after:109(m)
+input:9,after:110(n)
+input:0,after:101(e)
+input:-,after:46(.)
+input:=,after:114(r)
+input:~,after:122(z)
+input:!,after:33(!)
+input:@,after:117(u)
+input:#,after:37(%)
+input:$,after:39(')
+input:%,after:41())
+input:^,after:-109(▒)
+input:&,after:43(+)
+input:*,after:51(3)
+input:(,after:47(/)
+input:),after:49(1)
+input:_,after:-108(▒)
+input:+,after:53(5)
+input:q,after:61(=)
+input:w,after:61(=)
+input:e,after:61(=)
+input:r,after:61(=)
+input:t,after:61(=)
+input:y,after:61(=)
+input:u,after:61(=)
+input:i,after:61(=)
+input:o,after:61(=)
+input:p,after:61(=)
+input:[,after:-112(▒)
+input:],after:-110(▒)
+input:\,after:-111(▒)
+input:Q,after:-122(▒)
+input:W,after:-116(▒)
+input:E,after:122(z)
+input:R,after:-121(▒)
+input:T,after:-119(▒)
+input:Y,after:-114(▒)
+input:U,after:-118(▒)
+input:I,after:126(~)
+input:O,after:-124(▒)
+input:P,after:-123(▒)
+input:{,after:122(z)
+input:},after:122(z)
+input:|,after:122(z)
+input:a,after:61(=)
+input:s,after:61(=)
+input:d,after:61(=)
+input:f,after:61(=)
+input:g,after:61(=)
+input:h,after:61(=)
+input:j,after:61(=)
+input:k,after:61(=)
+input:l,after:61(=)
+input:;,after:112(p)
+input:',after:45(-)
+input:A,after:118(v)
+input:S,after:-120(▒)
+input:D,after:121(y)
+input:F,after:123({)
+input:G,after:124(|)
+input:H,after:125(})
+input:J,after:127()
+input:K,after:-128(▒)
+input:L,after:-127(▒)
+input::,after:111(o)
+input:",after:35(#)
+input:z,after:122(z)
+input:x,after:61(=)
+input:c,after:61(=)
+input:v,after:61(=)
+input:b,after:61(=)
+input:n,after:61(=)
+input:m,after:61(=)
+input:,,after:44(,)
+input:.,after:48(0)
+input:/,after:0()
+input:Z,after:-113(▒)
+input:X,after:-115(▒)
+input:C,after:120(x)
+input:V,after:-117(▒)
+input:B,after:119(w)
+input:N,after:-125(▒)
+input:M,after:-126(▒)
+input:<,after:113(q)
+input:>,after:115(s)
+input:?,after:116(t)
+#####################################################
+$ echo -n "jeihjiiklwjnk{ljj{kflghhj{ilk{k{kij{ihlgkfkhkwhhjgly" | tr "fghijklmne{wy" "1234567890FBD"
+504354467B596F755F6172335F476F6F645F437261636B33527D
+#####################################################
+iits@zjnbwangwm1z-PC ~/desktop
+$ python
+Python 2.7.10 (default, Jun  1 2015, 18:17:45)
+[GCC 4.9.2] on cygwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> '504354467B596F755F6172335F476F6F645F437261636B33527D'.decode('hex')
+'PCTF{You_ar3_Good_Crack3R}'
+>>>
