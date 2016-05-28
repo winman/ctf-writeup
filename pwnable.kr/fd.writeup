@@ -1,0 +1,39 @@
+fd@ubuntu:~$ ls -alt
+total 32
+dr-xr-xr-x 61 root root 4096 Mar  7 02:28 ..
+dr-xr-xr-x  2 root root 4096 Aug 20  2014 .irssi
+drwxr-x---  4 root fd   4096 Aug 20  2014 .
+d---------  2 root root 4096 Jun 12  2014 .bash_history
+-r-sr-x---  1 fd2  fd   7322 Jun 11  2014 fd
+-rw-r--r--  1 root root  418 Jun 11  2014 fd.c
+-r--r-----  1 fd2  root   50 Jun 11  2014 flag
+fd@ubuntu:~$ cat fd.c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+char buf[32];
+int main(int argc, char* argv[], char* envp[]){
+        if(argc<2){
+                printf("pass argv[1] a number\n");
+                return 0;
+        }
+        int fd = atoi( argv[1] ) - 0x1234;
+        int len = 0;
+        len = read(fd, buf, 32);
+        if(!strcmp("LETMEWIN\n", buf)){
+                printf("good job :)\n");
+                system("/bin/cat flag");
+                exit(0);
+        }
+        printf("learn about Linux file IO\n");
+        return 0;
+
+}
+
+fd@ubuntu:~$ ./fd
+pass argv[1] a number
+fd@ubuntu:~$ ./fd 4661
+LETMEWIN
+good job :)
+mommy! I think I know what a file descriptor is!!
+fd@ubuntu:~$ 
