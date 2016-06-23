@@ -1,0 +1,14 @@
+the program and layout of memory is easy to understand...
+but, how to pwn it?
+
+progress so far demo as below:
+
+root@kali:~/ctf/winman-git-ctf# (python cmcc-dbapp/sln_pwn4.py; cat -) | ../../Downloads/574d5fd349c98 
+Welcome! exploitMe~~~
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa->�e��dbse
+Welcome! exploitMe~~~
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa->aaaaaaaaaaaaaaaa
+->bbbbb
+->cccccccc
+->dddddd
+
