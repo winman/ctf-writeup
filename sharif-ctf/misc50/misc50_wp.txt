@@ -1,0 +1,7 @@
+1. 5 char key, bruteforce to get it
+the script is playfake_key.py
+2. from the result, misc50.log, should be 'BROWN'
+3. from encode, code the decode function, and run
+the script is playfake_decode.py
+4. change from the final string, and calc md5
+'CURRENTLY THE SEVENTH SHARIFCTF CONTEST IS BEING HELD'

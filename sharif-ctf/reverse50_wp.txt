@@ -1,0 +1,52 @@
+step1. get ida and reverse it
+#######################
+int __cdecl main(int argc, const char **argv, const char **envp)
+{
+  char v3; // al@4
+  int result; // eax@10
+  __int64 v5; // rbx@10
+  __int64 v6; // [sp+0h] [bp-40h]@0
+  int i; // [sp+4h] [bp-3Ch]@7
+  FILE *stream; // [sp+8h] [bp-38h]@7
+  char filename[8]; // [sp+10h] [bp-30h]@7
+  __int64 v10; // [sp+28h] [bp-18h]@1
+
+  v10 = *MK_FP(__FS__, 40LL);
+  LODWORD(v6) = 0;
+  while ( (signed int)v6 < strlen(s) )
+  {
+    if ( v6 & 1 )
+      v3 = 1;
+    else
+      v3 = -1;
+    *(&t + (signed int)v6 + 10) = s[(signed __int64)(signed int)v6] + v3;
+    LODWORD(v6) = v6 + 1;
+  }
+  strcpy(filename, "/tmp/flag.txt");
+  stream = fopen(filename, "w");
+  fprintf(stream, "%s\n", u, v6);
+  for ( i = 0; i < strlen(&t); ++i )
+  {
+    fseek(stream, p[i], 0);
+    fputc(*(&t + p[i]), stream);
+    fseek(stream, 0LL, 0);
+    fprintf(stream, "%s\n", u);
+  }
+  fclose(stream);
+  remove(filename);
+  result = 0;
+  v5 = *MK_FP(__FS__, 40LL) ^ v10;
+  return result;
+}
+
+step2. so task it dump the /tmp/flag.txt content
+but we can do it with simple ltrace
+#######################
+iits@ubuntu:~/Desktop$ ltrace -s 1000 ./getit 
+......
+strlen("SharifCTF{b70c59275fcfa8aebf2d5911223c6589}") = 43
+fclose(0x2216010)                                = 0
+remove("/tmp/flag.txt")                          = 0
++++ exited (status 0) +++
+......
+
