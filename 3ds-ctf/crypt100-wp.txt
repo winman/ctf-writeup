@@ -1,0 +1,23 @@
+iits@zjnbwangwm1z-PC ~
+$ nc 54.175.35.248 8002
+Hi! Are you my master?
+yes
+So prove it! We have a secret code so we can talk secretly.
+I will give you a couple of hints!
+If you give me a C, I give you a W.
+If you give me a F, I give you a T.
+If you give me a Z, I give you a 0(zero).
+So, what if I give you an I? What should you give me?
+Q
+Nice! But this doesnt prove much.
+Translate the following and I shall give to you what youre looking for:
+QYMFRUMYGFUHKTWQJRUHG
+IAMTHEMASTEROFCIPHERS
+Hello my master! Here is what you seek: 3DS{M4st3r_My_455}.
+
+
+
+steps:
+1, guess the key substitute for 'I', one by one, and get 'Q'
+2, now we have part of the key: "WT0Q"(cipher) for "CFZI"(plain)
+2, run SCBSOLVR, with fixed key, ignore 0/z pair, and manually change to final answer (attached the pic)

