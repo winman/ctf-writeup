@@ -1,0 +1,46 @@
+use zxing.jar to decode all these files
+
+<snippet>
+QRCodeTool test = new QRCodeTool();
+
+File f = null;
+File[] paths;
+
+/* comment by wwm: this is dir mode, batch decode of file */
+try{      
+ // get dir
+ f = new File(args[0]);
+ 
+ // returns pathnames for files and directory
+ paths = f.listFiles();
+ 
+ // for each pathname in pathname array
+ for(File path:paths)
+ {
+	// prints file and directory paths
+	System.out.println(path);
+	test.decode(path);
+ }
+}catch(Exception e){
+ // if any error occurs
+ e.printStackTrace();
+}
+</snippet>
+#####################################################
+RUN:
+java -classpath f:\SecLab\libs\zxing-3.2.1.jar;. QRCodeTool <path>\3dsctf\a5d744fb06e04bacfde2e7b713054145\list\ > test.log
+
+#####################################################
+remove those noisy info, and we got something below:
+<log>
+So wrong!
+Y0ur gift is in goo.gl/wFGwqO inugky3leb2gqzjanruw42yk
+Yu u no following right?
+Wrong!
+</log>
+
+#####################################################
+$ curl -L goo.gl/wFGwqO
+3DS{I_h0p3_th4t_Y0u_d1d_n0t_h4v3_ch4ck3d_OnE_by_0n3}
+
+
