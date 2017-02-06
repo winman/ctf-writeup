@@ -1,0 +1,39 @@
+1、 strings fore1.core
+
+2、 check the output
+cvqAeqacLtqazEigwiXobxrCrtuiTzahfFreqc{bnjrKwgk83kgd43j85ePgb_e_rwqr7fvbmHjklo3tews_hmkogooyf0vbnk0ii87Drfgh_n kiwutfb0ghk9ro987k5tfb_hjiouo087ptfcv}
+
+3、 transposition fense, with column 5
+cvqAe
+qacLt
+qazEi
+gwiXo
+bxrCr
+tuiTz
+ahfFr
+eqc{b
+njrKw
+gk83k
+gd43j
+85ePg
+b_e_r
+wqr7f
+vbmHj
+klo3t
+ews_h
+mkogo
+oyf0v
+bnk0i
+i87Dr
+fgh_n
+Xkiwu
+tfb0g
+hk9ro
+987k5
+tfb_h
+jiouo
+087pt
+fcv}
+
+4、 get the 4th column, and groud in line
+ALEXCTF{K33P_7H3_g00D_w0rk_up}

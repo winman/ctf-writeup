@@ -1,0 +1,10 @@
+1、 filter
+usb.device_address eq 3 and usb.bus_id==3 and usb.endpoint_number eq 0x02 and usb.src==host
+2、 select
+select "leftover capture data" in data window
+3、 export
+export packet bytes (ctrl H)
+4、 file concatenate
+cat 1 2 3 > allinone
+5、 check png file
+ALEXCTF{SN1FF_TH3_FL4G_0V3R_U5B}
