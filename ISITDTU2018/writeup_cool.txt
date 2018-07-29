@@ -1,0 +1,74 @@
+__int64 __fastcall main(__int64 a1, char **a2, char **a3)
+{
+  __int64 result; // rax@19
+  __int64 v4; // rcx@19
+  unsigned __int8 v5; // [sp+7h] [bp-69h]@12
+  signed int i; // [sp+8h] [bp-68h]@11
+  signed int j; // [sp+Ch] [bp-64h]@12
+  int s; // [sp+10h] [bp-60h]@3
+  __int64 v9; // [sp+68h] [bp-8h]@1
+
+  v9 = *MK_FP(__FS__, 40LL);
+  sub_400ADE(a1, a2, a3);
+  printf("Give me your key: ");
+  sub_400B21(dword_602100, 0x30u);
+  sub_400BDE(dword_602100, 48LL);
+  if ( strlen(dword_602100) != 28 )
+    sub_400D62(dword_602100);
+  memset(&s, 0, 8uLL);
+  s = *(_DWORD *)dword_602100;
+  if ( !(unsigned int)sub_400CE5((__int64)&s, "ECFD4245812B86AB2A878CA8CB1200F9") )
+    sub_400D62(&s);
+  memset(&s, 0, 8uLL);
+  s = dword_602104;
+  if ( !(unsigned int)sub_400CE5((__int64)&s, "88E3E2EDB64D39698A2CC0A08588B5FD") )
+    sub_400D62(&s);
+  memset(&s, 0, 8uLL);
+  s = dword_602108;
+  if ( !(unsigned int)sub_400CE5((__int64)&s, "BBC86F9D0B90B9B08D1256B4EF76354B") )
+    sub_400D62(&s);
+  if ( byte_60210C != 33 )
+    sub_400D62(&s);
+  for ( i = 13; dword_602100[(signed __int64)i]; ++i )
+  {
+    v5 = 0;
+    for ( j = 0; j <= i; ++j )
+      v5 ^= dword_602100[(signed __int64)j];
+    if ( v5 != byte_6020A8[(signed __int64)(i - 13)] )
+      sub_400D62(&s);
+  }
+  puts("Congratulation~~~");
+  printf("Your flag: ISITDTU{%s}\n", dword_602100);
+  result = 0LL;
+  v4 = *MK_FP(__FS__, 40LL) ^ v9;
+  return result;
+}
+
+md5[0:4]=ECFD4245812B86AB2A878CA8CB1200F9
+md5[4:8]=88E3E2EDB64D39698A2CC0A08588B5FD
+md5[8:12]=BBC86F9D0B90B9B08D1256B4EF76354B
+[c]=chr(33)
+ok=
+^[0:14]=ok[0]
+^[0:15]=ok[1]
+...
+^[0:28]=ok[14]
+
+
+
+.data:00000000006020A8 byte_6020A8     db  7Dh                  ; DATA XREF: main+175r
+.data:00000000006020A9                 db  4Dh ; M
+.data:00000000006020AA                 db  23h ; #
+.data:00000000006020AB                 db  44h ; D
+.data:00000000006020AC                 db  36h ; 6
+.data:00000000006020AD                 db  02h
+.data:00000000006020AE                 db  76h ; v
+.data:00000000006020AF                 db  03h
+.data:00000000006020B0                 db  6Fh ; o
+.data:00000000006020B1                 db  5Bh ; [
+.data:00000000006020B2                 db  2Fh ; /
+.data:00000000006020B3                 db  46h ; F
+.data:00000000006020B4                 db  76h ; v
+.data:00000000006020B5                 db  18h
+.data:00000000006020B6                 db  39h ; 9
+.data:00000000006020B6 _data           ends

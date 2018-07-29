@@ -1,0 +1,4 @@
+///index.php?_=0x0
+
+parse_url trick on ///
+0x0 to cheat empty($_GET['_'])
